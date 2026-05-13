@@ -1,0 +1,246 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0f1f3d;--slate:#1e3a5f;--steel:#2d5f8a;--mid:#4a7fa5;--light:#a8c8e0;--pale:#e8f2f8;
+    --ink:#1a1a2e;--muted:#5a6a7a;--rule:rgba(30,58,95,0.15);
+    --serif:'DM Serif Display',Georgia,serif;
+    --sans:'DM Sans',system-ui,sans-serif;
+  }
+  body{font-family:var(--sans);color:var(--ink);background:#fff;font-size:15px;line-height:1.6}
+  nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+  nav .logo{font-family:var(--serif);font-size:1.1rem;color:#fff;letter-spacing:0.02em}
+  nav .links{display:flex;gap:1.5rem}
+  nav a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-weight:400;transition:color 0.2s}
+  nav a:hover{color:#fff}
+  .hero{background:var(--navy);padding:5rem 2rem 4rem;text-align:center}
+  .hero-eyebrow{font-size:12px;letter-spacing:0.15em;color:var(--light);text-transform:uppercase;margin-bottom:1rem}
+  .hero h1{font-family:var(--serif);font-size:3.2rem;color:#fff;line-height:1.1;margin-bottom:1.5rem}
+  .hero h1 em{color:var(--light);font-style:italic}
+  .hero p{max-width:620px;margin:0 auto 2.5rem;color:rgba(255,255,255,0.75);font-size:1rem;line-height:1.75}
+  .hero-tags{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
+  .tag{background:rgba(168,200,224,0.15);border:1px solid rgba(168,200,224,0.3);color:var(--light);padding:0.4rem 1rem;border-radius:2rem;font-size:12px;letter-spacing:0.05em}
+  section{padding:4rem 2rem}
+  section:nth-child(even){background:var(--pale)}
+  .section-inner{max-width:820px;margin:0 auto}
+  .section-label{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);margin-bottom:0.5rem}
+  .section-title{font-family:var(--serif);font-size:2rem;color:var(--navy);margin-bottom:2.5rem}
+  .positioning{background:var(--slate);padding:3rem;border-radius:12px;position:relative;overflow:hidden}
+  .positioning::before{content:'';position:absolute;right:-2rem;top:-2rem;width:200px;height:200px;border-radius:50%;background:rgba(168,200,224,0.08)}
+  .positioning p{color:rgba(255,255,255,0.9);font-size:1.05rem;line-height:1.85;position:relative}
+  .positioning p strong{color:var(--light)}
+  .case-grid{display:grid;gap:1.5rem}
+  .case-card{background:#fff;border:1px solid var(--rule);border-radius:12px;overflow:hidden;cursor:pointer;transition:box-shadow 0.2s,transform 0.2s}
+  .case-card:hover{box-shadow:0 8px 32px rgba(15,31,61,0.1);transform:translateY(-2px)}
+  .case-header{padding:1.5rem;display:flex;align-items:flex-start;gap:1rem}
+  .case-num{font-family:var(--serif);font-size:2.5rem;color:var(--pale);line-height:1;flex-shrink:0;min-width:48px}
+  .case-meta{flex:1}
+  .case-role{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:0.25rem}
+  .case-title{font-size:1.1rem;font-weight:500;color:var(--navy);margin-bottom:0.5rem}
+  .case-summary{font-size:14px;color:var(--muted);line-height:1.6}
+  .case-footer{padding:1rem 1.5rem;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;background:rgba(232,242,248,0.5)}
+  .case-company{font-size:12px;color:var(--muted)}
+  .case-chips{display:flex;gap:0.5rem;flex-wrap:wrap}
+  .chip{font-size:11px;padding:3px 10px;border-radius:2rem;background:rgba(45,95,138,0.1);color:var(--steel)}
+  .case-body{display:none;padding:1.5rem;border-top:1px solid var(--rule);background:#fafcfe}
+  .case-body.open{display:block}
+  .case-row{display:grid;grid-template-columns:140px 1fr;gap:0.5rem 1.5rem;margin-bottom:1rem;font-size:14px}
+  .case-row-label{font-weight:500;color:var(--navy);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;padding-top:2px}
+  .case-row-val{color:var(--muted);line-height:1.65}
+  .artifact-link{display:inline-flex;align-items:center;gap:6px;margin-top:0.75rem;padding:0.5rem 1rem;background:var(--navy);color:#fff;border-radius:6px;font-size:13px;text-decoration:none;transition:background 0.2s}
+  .artifact-link:hover{background:var(--slate)}
+  .retro{font-style:italic;color:var(--mid)}
+  .process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+  .process-step{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.25rem;text-align:center}
+  .process-icon{font-size:22px;margin-bottom:0.75rem;color:var(--steel)}
+  .process-step h4{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:0.4rem}
+  .process-step p{font-size:12px;color:var(--muted);line-height:1.5}
+  .process-arrow{display:flex;align-items:center;color:var(--light);font-size:18px;padding-top:0.5rem}
+  .quals{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+  .qual-card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.25rem}
+  .qual-card h4{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:0.25rem}
+  .qual-card p{font-size:12px;color:var(--muted)}
+  .contact-block{background:var(--navy);border-radius:12px;padding:2rem;text-align:center}
+  .contact-block p{color:rgba(255,255,255,0.75);margin-bottom:1.5rem}
+  .contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .contact-link{padding:0.6rem 1.5rem;border:1px solid rgba(168,200,224,0.4);color:var(--light);border-radius:6px;font-size:14px;text-decoration:none;transition:all 0.2s}
+  .contact-link:hover{background:rgba(168,200,224,0.1);border-color:var(--light)}
+</style>
+
+<nav>
+  <span class="logo">Leigh Recrio</span>
+  <div class="links">
+    <a href="#positioning">About</a>
+    <a href="#casestudies">Work</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">Portfolio — Change Management & Instructional Design</p>
+  <h1>Turning resistance<br>into <em>adoption</em></h1>
+  <p>I design learning and change programs for complex, safety-critical, and technically minded environments — where the workforce didn't ask for change, and that's exactly the point.</p>
+  <div class="hero-tags">
+    <span class="tag">Change Management</span>
+    <span class="tag">Instructional Design</span>
+    <span class="tag">Stakeholder Engagement</span>
+    <span class="tag">Power BI</span>
+    <span class="tag">eLearning</span>
+    <span class="tag">Mining & Manufacturing</span>
+  </div>
+</div>
+
+<section id="positioning">
+  <div class="section-inner">
+    <div class="section-label">Positioning</div>
+    <div class="section-title">My point of view</div>
+    <div class="positioning">
+      <p>Change fails when it's treated as a comms problem. I work from the other end — starting with <strong>who has to change, why they won't, and what it would take to earn their commitment</strong> — then building the governance, training, and measurement infrastructure to make adoption visible and sustainable. I'm most useful in environments where the workforce is technically minded, site cultures are distinct, and there's no established playbook. I've run end-to-end change programs in mining, manufacturing, and the care sector; led post-merger integrations; and built executive dashboards that surface risk before it becomes a delivery problem. I don't treat frameworks as finished products. I work inside whatever structure exists, identify where it breaks under real program conditions, and bring evidence to improve it.</p>
+    </div>
+  </div>
+</section>
+
+<section id="casestudies">
+  <div class="section-inner">
+    <div class="section-label">Case Studies</div>
+    <div class="section-title">Selected work</div>
+    <div class="case-grid">
+
+      <div class="case-card" onclick="toggle(this)">
+        <div class="case-header">
+          <div class="case-num">01</div>
+          <div class="case-meta">
+            <div class="case-role">Change Management · Risk Visibility</div>
+            <div class="case-title">Training & Compliance Dashboard — making risk visible before it becomes a problem</div>
+            <div class="case-summary">Built an executive-facing Power BI dashboard to surface training compliance risk signals across a multi-site manufacturing operation.</div>
+          </div>
+        </div>
+        <div class="case-footer">
+          <span class="case-company">GFG Alliance (OneSteel Manufacturing)</span>
+          <div class="case-chips"><span class="chip">Power BI</span><span class="chip">Change governance</span><span class="chip">Multi-site</span></div>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><span class="case-row-label">Challenge</span><span class="case-row-val">Training compliance was tracked in spreadsheets per site, with no consolidated view for leadership. Risk signals — lapsed certifications, safety-critical gaps — were invisible until they became incidents or audit findings.</span></div>
+          <div class="case-row"><span class="case-row-label">My role</span><span class="case-row-val">End-to-end ownership: requirements gathering across site managers, dashboard design and build in Power BI, stakeholder onboarding, and ongoing iteration based on leadership feedback.</span></div>
+          <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">Identified the decisions leadership needed to make, not just the data they had. Designed the dashboard around those decisions — flagging at-risk sites and workforce segments rather than displaying raw completion rates. Built in drill-down so site managers could act without waiting for a report cycle.</span></div>
+          <div class="case-row"><span class="case-row-label">Outcome</span><span class="case-row-val">Leadership shifted from reactive to proactive on training compliance. Compliance conversations moved from monthly paper packs to weekly dashboard reviews. Risk flagging now happens before certification lapses, not after.</span></div>
+          <div class="case-row"><span class="case-row-label">Reflection</span><span class="case-row-val"><span class="retro">I'd spend more time earlier on defining what "at risk" meant to each stakeholder — the first version tracked the wrong leading indicators for two of the four sites.</span></span></div>
+          <a class="artifact-link" href="#" onclick="return false;"><i class="ti ti-chart-bar" aria-hidden="true"></i> View dashboard artifact [link your dashboard here]</a>
+        </div>
+      </div>
+
+      <div class="case-card" onclick="toggle(this)">
+        <div class="case-header">
+          <div class="case-num">02</div>
+          <div class="case-meta">
+            <div class="case-role">Instructional Design · eLearning</div>
+            <div class="case-title">Agile 101 for a mining workforce — translating abstract methodology for people who build real things</div>
+            <div class="case-summary">Designed and developed a video-based eLearning program introducing Agile principles to a BHP mining workforce with no prior exposure to the methodology.</div>
+          </div>
+        </div>
+        <div class="case-footer">
+          <span class="case-company">BHP</span>
+          <div class="case-chips"><span class="chip">eLearning</span><span class="chip">Video production</span><span class="chip">Agile</span></div>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><span class="case-row-label">Challenge</span><span class="case-row-val">The organisation was adopting Agile ways of working, but the workforce — highly technical, practically oriented, and sceptical of frameworks — needed more than a theory overview. Generic off-the-shelf Agile content felt irrelevant to people who measure their work in tonnes, shifts, and safety records.</span></div>
+          <div class="case-row"><span class="case-row-label">My role</span><span class="case-row-val">Design and development of the full eLearning series — scripting, storyboarding, video production, and implementation. Worked closely with SMEs to ground Agile concepts in mining-specific scenarios.</span></div>
+          <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">Led with the problem Agile solves, not the framework itself. Used operational analogies familiar to the workforce — shift handovers as stand-ups, maintenance sprints — to make abstract concepts concrete before introducing terminology. Videos kept short (under 5 minutes) to fit shift-based access patterns.</span></div>
+          <div class="case-row"><span class="case-row-label">Outcome</span><span class="case-row-val">Program deployed across target cohorts with strong completion rates. Qualitative feedback indicated the scenarios resonated; learners connected the methodology to work they already did rather than seeing it as external imposition.</span></div>
+          <div class="case-row"><span class="case-row-label">Reflection</span><span class="case-row-val"><span class="retro">I'd build in a short "So what does this mean for your team?" prompt at the end of each module — the learning landed better in teams where managers debriefed than where it was completed alone.</span></span></div>
+          <a class="artifact-link" href="#" onclick="return false;"><i class="ti ti-player-play" aria-hidden="true"></i> Watch training video [link your BHP videos here]</a>
+        </div>
+      </div>
+
+      <div class="case-card" onclick="toggle(this)">
+        <div class="case-header">
+          <div class="case-num">03</div>
+          <div class="case-meta">
+            <div class="case-role">Change Management · Platform Adoption</div>
+            <div class="case-title">Workplace by Meta rollout at Cara — embedding a comms platform into daily operations</div>
+            <div class="case-summary">Led the end-to-end change program to adopt Workplace as the organisation's centralised communications platform, moving from fragmented channels to a single source of connection.</div>
+          </div>
+        </div>
+        <div class="case-footer">
+          <span class="case-company">Cara</span>
+          <div class="case-chips"><span class="chip">Platform adoption</span><span class="chip">Change comms</span><span class="chip">Stakeholder management</span></div>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><span class="case-row-label">Challenge</span><span class="case-row-val">The organisation lacked a unified internal comms channel. Information was fragmented across email, noticeboards, and informal networks — with frontline workers often the last to receive updates. Leadership wanted a platform solution; the change program had to make people want to use it.</span></div>
+          <div class="case-row"><span class="case-row-label">My role</span><span class="case-row-val">Change program lead — stakeholder mapping, comms plan, training design, champion network, adoption tracking, and post-launch embedding. Not just the technical rollout.</span></div>
+          <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">Identified early adopters in each team and gave them a role before the launch — they became the proof that the platform was useful, not a mandate. Segmented communications by workforce type. Tracked active usage weekly, not just account creation, and intervened with teams showing low engagement.</span></div>
+          <div class="case-row"><span class="case-row-label">Outcome</span><span class="case-row-val">Platform moved from a tool IT owned to one staff used by choice. Internal communications shifted measurably from email to Workplace for operational updates within the first quarter post-launch.</span></div>
+          <div class="case-row"><span class="case-row-label">Reflection</span><span class="case-row-val"><span class="retro">I underestimated how much the annual report video (produced as part of the same initiative) would serve as a trust signal — people engaged more with the platform once they saw the organisation communicating transparently through it.</span></span></div>
+          <a class="artifact-link" href="#" onclick="return false;"><i class="ti ti-player-play" aria-hidden="true"></i> Watch annual report video [link your Cara video here]</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="section-inner">
+    <div class="section-label">How I work</div>
+    <div class="section-title">My process</div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+        <h4>Stakeholder & impact analysis</h4>
+        <p>Who has to change, how much, and why they might not. Resistance mapped before comms drafted.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-icon"><i class="ti ti-map" aria-hidden="true"></i></div>
+        <h4>Change & learning strategy</h4>
+        <p>Adoption plan integrated with project schedule. Training designed for how work actually happens, not how it should.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-icon"><i class="ti ti-pencil" aria-hidden="true"></i></div>
+        <h4>Content design & development</h4>
+        <p>Multi-modal where it matters. Videos, facilitator guides, job aids — matched to the workforce, not the budget deck.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+        <h4>Measurement & iteration</h4>
+        <p>Leading indicators, not just completion rates. Dashboards that enable decisions, not just reporting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <div class="section-label">Credentials</div>
+    <div class="section-title">Qualifications</div>
+    <div class="quals">
+      <div class="qual-card"><h4>Psychology</h4><p>Undergraduate background informing all change and learning design</p></div>
+      <div class="qual-card"><h4>Six Sigma Black Belt</h4><p>Process improvement and evidence-based problem solving</p></div>
+      <div class="qual-card"><h4>Cert IV Training & Assessment</h4><p>TAE-qualified instructional design practitioner</p></div>
+      <div class="qual-card"><h4>Defence clearance eligible</h4><p>Australian citizen, based in Adelaide</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get in touch</div>
+    <div class="section-title">Let's talk</div>
+    <div class="contact-block">
+      <p>Available for senior change, learning, and organisational development roles — particularly in defence, resources, and industrial sectors.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:leighrecrio@gmail.com"><i class="ti ti-mail" aria-hidden="true"></i> leighrecrio@gmail.com</a>
+        <a class="contact-link" href="tel:0451252125"><i class="ti ti-phone" aria-hidden="true"></i> 0451 252 125</a>
+        <a class="contact-link" href="https://tiny.cc/recrio"><i class="ti ti-external-link" aria-hidden="true"></i> tiny.cc/recrio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggle(card){
+  const body=card.querySelector('.case-body');
+  body.classList.toggle('open');
+}
+</script>
